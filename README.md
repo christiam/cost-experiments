@@ -1,8 +1,8 @@
 # cost-experiments
-Tools to experiment with cost of running BLAST searches
+Tools to experiment with cost of running BLAST searches.
 The goal is to easily replicate the experiments in from [this
 publication](https://www.ncbi.nlm.nih.gov/pubmed/31040829) using NCBI BLAST cloud
-products.
+products. 
 
 ## How-to
 
@@ -16,4 +16,4 @@ The `Makefile` contains some targets to facilitate operations:
 
 Table with cost for each analysis (small, medium, large) for each product.
 Make note of date and `nt` BLASTDB size.
-
+Example: [BLAST+ docker at scale](https://github.com/ncbi/blast_plus_docs#section-3---using-the-blast-docker-image-at-production-scale)
