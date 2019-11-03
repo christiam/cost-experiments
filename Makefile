@@ -8,17 +8,17 @@ VENV=.env
 
 all: small
 
-small: data/query.fa
+small: data/query.fa ${VENV}
 	[ -d results ] || mkdir results
 	source ${VENV}/bin/activate && /usr/bin/time -p src/web-blast.py data/query1.fa > results/web-blast-small.tsv
 	source ${VENV}/bin/activate && /usr/bin/time -p src/blast-gcp.py data/query1.fa > results/blast-gcp-small.tsv
 
-medium: data/query.fa
+medium: data/query.fa ${VENV}
 	[ -d results ] || mkdir results
 	source ${VENV}/bin/activate && /usr/bin/time -p src/web-blast.py data/query5.fa > results/web-blast-medium.tsv
 	source ${VENV}/bin/activate && /usr/bin/time -p src/blast-gcp.py data/query5.fa > results/blast-gcp-medium.tsv
 
-large: data/query.fa
+large: data/query.fa ${VENV}
 	[ -d results ] || mkdir results
 	source ${VENV}/bin/activate && /usr/bin/time -p src/web-blast.py data/query.fa > results/web-blast-large.tsv
 	source ${VENV}/bin/activate && /usr/bin/time -p src/blast-gcp.py data/query.fa > results/blast-gcp-large.tsv
