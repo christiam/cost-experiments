@@ -1,4 +1,4 @@
-# Makefile for FIXME
+# Makefile for cost-experiments
 # Author: Christiam Camacho (christiam.camacho@gmail.com)
 # Created: Sun Nov  3 06:51:01 2019
 
@@ -23,23 +23,18 @@ large: data/query.fa
 	source ${VENV}/bin/activate && /usr/bin/time -p src/web-blast.py data/query.fa > results/web-blast-large.tsv
 	source ${VENV}/bin/activate && /usr/bin/time -p src/blast-gcp.py data/query.fa > results/blast-gcp-large.tsv
 
-
-check: ${VENV} data/query.fa
-
 data/query.fa:
+	[ -d data ] || mkdir data
 	[ -f data/fa.zip ] || wget -q -O data/fa.zip https://ndownloader.figshare.com/articles/6865397?private_link=729b346eda670e9daba4
 	unzip -d data data/fa.zip
 	cat data/*.fa > data/query.fa
 	cat data/'Sample_1 (paired) trimmed (paired) assembly.fa' > data/query1.fa
 	cat data/'Sample_1 (paired) trimmed (paired) assembly.fa' data/'Sample_2 (paired) trimmed (paired) assembly.fa' data/'Sample_3 (paired) trimmed (paired) assembly.fa' data/'Sample_4 (paired) trimmed (paired) assembly.fa' data/'Sample_5 (paired) trimmed (paired) assembly.fa' > data/query5.fa
 
-
-
-
 #########################################################################
 # Python support
 
-check_python: ${VENV}
+check: ${VENV}
 	source ${VENV}/bin/activate && \
 	for f in $(wildcard src/*.py); do python -m py_compile $$f ; done && \
 	python3 -m unittest $(subst .py,,$(filter-out setup.py, $(wildcard src/*.py))) && \
