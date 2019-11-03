@@ -36,8 +36,8 @@ data/query.fa:
 
 check: ${VENV}
 	source ${VENV}/bin/activate && \
-	for f in $(wildcard src/*.py); do python -m py_compile $$f ; done && \
-	python3 -m unittest $(subst .py,,$(filter-out setup.py, $(wildcard src/*.py))) && \
+	for f in $(wildcard src/*.py); do python -m py_compile $$f ; done
+	#python3 -m unittest $(subst .py,,$(filter-out setup.py, $(wildcard src/*.py))) && \
 	python3 -m unittest discover -s tests
 	#time -p python3 -m doctest map.py
 	#time -p py.test *.py
